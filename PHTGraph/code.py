@@ -1,6 +1,6 @@
 import processing.serial.*;
 
-Serial serialPort;  // The serial port
+Serial serialPort;  // the serial port
 float sensor1, sensor2, sensor3;
 float posX1, posX2, temp1, temp2, pres1, pres2, hum1, hum2, posX3, posX4, posX5, posX6;
 int gridNum = 30;
@@ -20,20 +20,20 @@ void setup() {
   pres2 = 0;
   printArray(Serial.list());
   
-  // Open the serial port at the desired baud rate
+  // open the serial port
   serialPort = new Serial(this, Serial.list()[0], 9600);
   
-  // Create grid (vertical)
+  // create grid (vertical)
   for (int i = 50; i < width + 1; i += 50) {
     line(i, 0, i, height - 50);
   }
 
-  // Create grid (horizontal)
+  // create grid (horizontal)
   for (int i = 50; i < height + 1; i += 50) {
     line(50, i, width, i);
   }
 
-  // Display top labels
+  // display top labels
   fill(0, 0, 255);
   text("1050 hPa", 3, 10);
   fill(0, 128, 0);
@@ -41,7 +41,7 @@ void setup() {
   fill(255, 0, 0);
   text("85 deg", 3, 40);
 
-  // Display bottom labels
+  // display bottom labels
   fill(0, 0, 255);
   text("950 hPa", 3, 535);
   fill(0, 128, 0);
@@ -49,7 +49,7 @@ void setup() {
   fill(255, 0, 0);
   text("62 deg", 3, 565);
 
-  // Display second labels on the bottom
+  // display second labels on the bottom
   fill(0, 0, 0);
   for (int i = 100; i < width; i += 50) {
     labelText = String.valueOf(gridNum);
@@ -90,23 +90,23 @@ void draw() {
         println(sensor3);
       }
 
-      // Temperature calculation and mapping
+      // temperature calc and mapping
       float temperature = sensor3;
       float mappedTemp = 600 - map(temperature, 62, 85, 0, 550);
-      print("Temperature: " + temperature + " Mapped: " + mappedTemp);
+      print("temperature: " + temperature + " mapped: " + mappedTemp);
       println();
 
-      // Humidity calculation and mapping
+      // humidity calc and mapping
       float humidity = sensor2;
       float mappedHumidity = 600 - map(humidity, 0, 100, 0, 550);
-      print("Humidity: " + humidity + " Mapped: " + mappedHumidity);
+      print("humidity: " + humidity + " mapped: " + mappedHumidity);
 
-      // Pressure calculation and mapping
+      // pressure calc and mapping
       float pressure = sensor1;
       float mappedPressure = 600 - map(pressure, 850, 1100, 0, 550);
-      print("Pressure: " + pressure + " Mapped: " + mappedPressure);
+      print("pressure: " + pressure + " mapped: " + mappedPressure);
 
-      // Draw temperature line
+      // draw temperature 
       posX2 = posX1 + 50;
       if (temp1 == 0 && temp2 == 0) {
         temp1 = mappedTemp;
@@ -120,7 +120,7 @@ void draw() {
       posX1 = posX2;
       temp1 = temp2;
 
-      // Draw humidity line
+      // draw humidity 
       posX4 = posX3 + 50;
       if (hum1 == 0 && hum2 == 0) {
         hum1 = mappedHumidity;
@@ -134,7 +134,7 @@ void draw() {
       posX3 = posX4;
       hum1 = hum2;
 
-      // Draw pressure line
+      // draw pressure 
       posX6 = posX5 + 50;
       if (pres1 == 0 && pres2 == 0) {
         pres1 = mappedPressure;
