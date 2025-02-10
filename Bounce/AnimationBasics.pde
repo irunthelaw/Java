@@ -18,7 +18,7 @@ void setup() {
     while (vy == 0) {
       vy = (float)(int)(random(21) - 10);
     }
-    newColor = color(250, random(100), random(220));
+    newColor = color(222, random(167), random(55));
     Ball one = new Ball(x, y, radius, vx, vy, 0, 0, newColor);
     ballList.add(one);
   }
@@ -31,7 +31,7 @@ void draw() {
     ball.drawBall();
     ball.moveBall();
     if (ball.moveBall()){
-      newColor = color(250, random(100), random(220));
+      newColor = color(222, random(167), random(55));
       radius = random(40) + 12;
       vx *= -1;
       vy *= -1;
